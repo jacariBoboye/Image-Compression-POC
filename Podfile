@@ -7,14 +7,6 @@ target 'ImageCompressionPOC' do
 
   # Pods for ImageCompressionPOC
 
-  target 'ImageCompressionPOCTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ImageCompressionPOCUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+  	pod 'SimpleImageViewer', '~> 1.1.1'
+	pod 'PopBounceButton'
 end

@@ -1,0 +1,24 @@
+PODS:
+  - pop (1.0.12)
+  - PopBounceButton (1.2.1):
+    - pop (~> 1.0)
+  - SimpleImageViewer (1.1.1)
+
+DEPENDENCIES:
+  - PopBounceButton
+  - SimpleImageViewer (~> 1.1.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - pop
+    - PopBounceButton
+    - SimpleImageViewer
+
+SPEC CHECKSUMS:
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PopBounceButton: 59e2b525516ee0a240068526aabe6ef5c7fa59dd
+  SimpleImageViewer: 34c3a2cde2d9ac022146772cefc27fca14b0c8b1
+
+PODFILE CHECKSUM: 9fc6105ca1ace3dfb7c389e768bd533f23718163
+
+COCOAPODS: 1.6.1

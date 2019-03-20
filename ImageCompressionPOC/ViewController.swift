@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleImageViewer
 
 final class ViewController: UIViewController {
     
@@ -49,6 +50,7 @@ extension ViewController{
 }
 
 
+//MARK: UI Stuff
 extension ViewController{
     
     enum compressionType: String{case high = "high", medium = "medium", low = "low"}
@@ -96,16 +98,19 @@ extension ViewController{
         switch compressionType{
         case .high:
             let imageData = originalImageView.image?.jpegData(compressionQuality:0.25)!
-            compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality:0.25))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024).rounded()) KB"
+            compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality:0.0))!)
+            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
+            presentImageViewer(selectedImage: compressedImageView)
         case .medium:
             let imageData = originalImageView.image?.jpegData(compressionQuality:0.50)!
             compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality:0.50))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024).rounded()) KB"
+            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
+            presentImageViewer(selectedImage: compressedImageView)
         case .low:
             let imageData = originalImageView.image?.jpegData(compressionQuality:0.75)!
             compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality: 0.75))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024).rounded()) KB"
+            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
+            presentImageViewer(selectedImage: compressedImageView)
         }
     }
     
@@ -113,33 +118,49 @@ extension ViewController{
         compressedImageView.image = nil
         compressedImageLabel.text = "Compressed Image Size:"
     }
+
+    private func presentImageViewer(selectedImage: UIImageView){
+        
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = selectedImage
+        }        
+        let imageViewerController = ImageViewerController(configuration: configuration)
+        present(imageViewerController, animated: true)
+    }
 }
 
 
-//UIImag
+//MARK: UIImagePickerControllerDelegate
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, 
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-        guard let selectedImage = info[.editedImage] as? UIImage else {fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")}
+        
+        guard let selectedImage = info[.originalImage] as? UIImage else {fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")}
+        
         originalImageView.image = selectedImage
-        let imageData = originalImageView.image?.jpegData(compressionQuality:0.75)!
-        originalImageLabel.text = "Actual Image Size: \n \(Float(Double(imageData!.count)/1024).rounded()) KB"
-        resetForNewImage()
+                
+        originalImageLabel.text = "Actual Image Size: \n \(Float(Double((selectedImage.pngData()?.count)!)/(1024 * 1024)).rounded()) MB"
+        
+        print("selectedImage: \(selectedImage.pngData()?.count)")
+        print("UIImage: \(originalImageView.image?.pngData()?.count)")
+        
         dismiss(animated: true, completion:{
             self.gottaKeepItFun()
             self.customCompresionOutletButton.isEnabled = true
+            self.resetForNewImage()
         })
     }
 }
 
 
+//MARK: Bonus
 extension ViewController{
     
     //TODO(Optional): Add a fun animation to the customCompressOutlet button 
     fileprivate func gottaKeepItFun(){
         UIView.animate(withDuration: 0.7) { 
-            self.customCompresionOutletButton.alpha = 0.95 
+            self.customCompresionOutletButton.alpha = 1.0
         }
     }
 }

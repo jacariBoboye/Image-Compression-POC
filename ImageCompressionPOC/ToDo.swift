@@ -13,8 +13,5 @@
  1. Add more image compression percentages to select from.
  2. Add overlay that shows UIImage of the compressed image
  3. Add constraints. Only works on 5s at the moment.
- 
- 
- 
- 
+ s
  */
