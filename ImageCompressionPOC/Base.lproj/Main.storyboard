@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Image POC-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageCompressionPOC" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Image POC" id="oYG-qI-DKB">
+                    <navigationItem key="navigationItem" id="oYG-qI-DKB">
                         <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="5Vb-So-KrJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -85,7 +85,7 @@
                     <connections>
                         <outlet property="compressedImageLabel" destination="n9B-re-aM6" id="tLU-aj-oAB"/>
                         <outlet property="compressedImageView" destination="DhB-tH-VmA" id="odt-z2-yDi"/>
-                        <outlet property="customCompresionOutletButton" destination="XqW-eR-D7l" id="FFE-I9-p5H"/>
+                        <outlet property="customCompresionOutletButton" destination="XqW-eR-D7l" id="lLY-ZD-L8T"/>
                         <outlet property="originalImageLabel" destination="p5s-i6-hku" id="zJy-O5-UWc"/>
                         <outlet property="originalImageView" destination="ZsL-Pr-HGi" id="PpG-0i-qmn"/>
                     </connections>

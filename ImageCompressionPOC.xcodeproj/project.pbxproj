@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E0D1349224161A40087ABC4 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D1348224161A40087ABC4 /* PreviewViewController.swift */; };
+		7E6B73472241D9E1002A1128 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B73462241D9E1002A1128 /* UIImageView + Extensions.swift */; };
 		7EA80143224009E5008BF1CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA80142224009E5008BF1CF /* AppDelegate.swift */; };
 		7EA80145224009E5008BF1CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA80144224009E5008BF1CF /* ViewController.swift */; };
 		7EA80148224009E5008BF1CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EA80146224009E5008BF1CF /* Main.storyboard */; };
@@ -15,7 +15,6 @@
 		7EA8014D224009E7008BF1CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8014B224009E7008BF1CF /* LaunchScreen.storyboard */; };
 		7EA80158224009E7008BF1CF /* ImageCompressionPOCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA80157224009E7008BF1CF /* ImageCompressionPOCTests.swift */; };
 		7EA80163224009E7008BF1CF /* ImageCompressionPOCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA80162224009E7008BF1CF /* ImageCompressionPOCUITests.swift */; };
-		7EA801712240B506008BF1CF /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA801702240B506008BF1CF /* ToDo.swift */; };
 		F712DF85130E58824046C9A8 /* Pods_ImageCompressionPOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13319106E94908C9A1DD4DFB /* Pods_ImageCompressionPOC.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		13319106E94908C9A1DD4DFB /* Pods_ImageCompressionPOC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageCompressionPOC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E0D1348224161A40087ABC4 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		7E6B73462241D9E1002A1128 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView + Extensions.swift"; path = "/Users/playboiCari/Documents/Programs/ImageCompressionPOC/ImageCompressionPOC/UIImageView + Extensions.swift"; sourceTree = "<absolute>"; };
 		7EA8013F224009E5008BF1CF /* ImageCompressionPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageCompressionPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA80142224009E5008BF1CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA80144224009E5008BF1CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +51,6 @@
 		7EA8015E224009E7008BF1CF /* ImageCompressionPOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageCompressionPOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA80162224009E7008BF1CF /* ImageCompressionPOCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressionPOCUITests.swift; sourceTree = "<group>"; };
 		7EA80164224009E7008BF1CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EA801702240B506008BF1CF /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		EDD44FF24CC7EF1A8C78DAB3 /* Pods-ImageCompressionPOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageCompressionPOC.release.xcconfig"; path = "Target Support Files/Pods-ImageCompressionPOC/Pods-ImageCompressionPOC.release.xcconfig"; sourceTree = "<group>"; };
 		FE9C7C52E988F5531C6CE1EA /* Pods-ImageCompressionPOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageCompressionPOC.debug.xcconfig"; path = "Target Support Files/Pods-ImageCompressionPOC/Pods-ImageCompressionPOC.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,13 +107,12 @@
 			isa = PBXGroup;
 			children = (
 				7EA80142224009E5008BF1CF /* AppDelegate.swift */,
-				7E0D1348224161A40087ABC4 /* PreviewViewController.swift */,
+				7E6B73462241D9E1002A1128 /* UIImageView + Extensions.swift */,
 				7EA80144224009E5008BF1CF /* ViewController.swift */,
 				7EA80146224009E5008BF1CF /* Main.storyboard */,
 				7EA80149224009E7008BF1CF /* Assets.xcassets */,
 				7EA8014B224009E7008BF1CF /* LaunchScreen.storyboard */,
 				7EA8014E224009E7008BF1CF /* Info.plist */,
-				7EA801702240B506008BF1CF /* ToDo.swift */,
 			);
 			path = ImageCompressionPOC;
 			sourceTree = "<group>";
@@ -144,7 +141,6 @@
 				FE9C7C52E988F5531C6CE1EA /* Pods-ImageCompressionPOC.debug.xcconfig */,
 				EDD44FF24CC7EF1A8C78DAB3 /* Pods-ImageCompressionPOC.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -340,8 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA801712240B506008BF1CF /* ToDo.swift in Sources */,
-				7E0D1349224161A40087ABC4 /* PreviewViewController.swift in Sources */,
+				7E6B73472241D9E1002A1128 /* UIImageView + Extensions.swift in Sources */,
 				7EA80145224009E5008BF1CF /* ViewController.swift in Sources */,
 				7EA80143224009E5008BF1CF /* AppDelegate.swift in Sources */,
 			);

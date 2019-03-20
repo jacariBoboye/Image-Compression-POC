@@ -9,6 +9,13 @@
 import UIKit
 import SimpleImageViewer
 
+
+enum compressionType: String{case highest = "highest", medium = "medium", lowest = "lowest"}
+
+enum compressionAmount: CGFloat{case highestCompression = 0.0, highCompression = 0.25, mediumCompression = 0.50, mildCompress = 0.75, lowestCompression = 0.9}
+
+
+//MARK: Properties
 final class ViewController: UIViewController {
     
     @IBOutlet var originalImageView: UIImageView!
@@ -17,10 +24,10 @@ final class ViewController: UIViewController {
     @IBOutlet var compressedImageView: UIImageView!
     @IBOutlet var compressedImageLabel: UILabel!
     
+    @IBOutlet var customCompresionOutletButton: UIButton!
+    
     @IBAction func addActionButton(_ sender: Any) {
-        //Repace old image and text
-        //Reset compress child image and text
-        //Reset title
+
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -29,12 +36,11 @@ final class ViewController: UIViewController {
             present(imagePicker, animated: true, completion: nil)
         }
     }
+    
     @IBAction func customCompressionActionButton(_ sender: Any) {
-        //Show picker 
+
         showPickerView()
     }
-    
-    @IBOutlet var customCompresionOutletButton: UIButton!
 }
 
 
@@ -43,9 +49,16 @@ extension ViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        title = "Add an image"
+        
         customCompresionOutletButton.isEnabled = false
         customCompresionOutletButton.alpha = 0.2
+        
+        let imageTapped = UITapGestureRecognizer(target: self, 
+                                         action: #selector(presentImageViewer))
+        
+        compressedImageView.addGestureRecognizer(imageTapped)        
     }
 }
 
@@ -53,82 +66,53 @@ extension ViewController{
 //MARK: UI Stuff
 extension ViewController{
     
-    enum compressionType: String{case high = "high", medium = "medium", low = "low"}
-    
     private func showPickerView(){
         
         let alert = UIAlertController(title: "Image Compression Type:", message: "Please Select an Option", preferredStyle: .actionSheet)
         
         alert.view.backgroundColor = .black
         alert.view.tintColor = .darkGray
-        
-        var selectedProperty = ""
-        
-        //TODO: Add reusable "addAction" button here and replace code below" 
-        alert.addAction(UIAlertAction(title: "High Compression(75%)", style: .default , handler:{ (UIAlertAction)in
-            self.setCompressedImage(self.originalImageView.image!, compressionType: compressionType.high)
-            selectedProperty = compressionType.high.rawValue
-//            let showPercentStr = (selectedProperty.isEmpty) ? "" : "%"
-//            self.title = "Image POC - \(selectedProperty.uppercased()) \(showPercentStr)"
-            self.title = "\(selectedProperty.uppercased())"
+                
+        alert.addAction(UIAlertAction(title: "High Compression(\(compressionAmount.highestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+            self.setCompressedImage(compressionAmount: .highestCompression)
+            self.title = "\(compressionType.highest.rawValue.uppercased())"
         }))
-        alert.addAction(UIAlertAction(title: "Medium Compression(50%)", style: .default , handler:{ (UIAlertAction)in
-            self.setCompressedImage(self.originalImageView.image!, compressionType: .medium)
-            selectedProperty = compressionType.medium.rawValue
-//            let showPercentStr = (selectedProperty.isEmpty) ? "" : "%"
-//            self.title = "Image POC - \(selectedProperty.uppercased()) \(showPercentStr)"
-            self.title = "\(selectedProperty.uppercased())"
+        alert.addAction(UIAlertAction(title: "Medium Compression(\(compressionAmount.mediumCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+            self.setCompressedImage(compressionAmount: .mediumCompression)
+            self.title = "\(compressionType.medium.rawValue.uppercased())"
         }))
-        alert.addAction(UIAlertAction(title: "Low Compression(25%)", style: .default , handler:{ (UIAlertAction)in
-            self.setCompressedImage(self.originalImageView.image!, compressionType: .low)
-            selectedProperty = compressionType.low.rawValue
-//            let showPercentStr = (selectedProperty.isEmpty) ? "" : "%"
-//            self.title = "Image POC - \(selectedProperty.uppercased()) \(showPercentStr)"
-            self.title = "\(selectedProperty.uppercased())"
+        alert.addAction(UIAlertAction(title: "Low Compression(\(compressionAmount.lowestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+            self.setCompressedImage(compressionAmount: .lowestCompression)
+            self.title = "\(compressionType.lowest.rawValue.uppercased())"
         }))
         alert.addAction(UIAlertAction(title: "Do Nothing", style: .default , handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
         })
     }
-    
-    private func addAlertAction(){}//TODO: Make this a reusable "addAction" button 
-    
-    private func setCompressedImage(_ image: UIImage, compressionType: compressionType){
-        switch compressionType{
-        case .high:
-            let imageData = originalImageView.image?.jpegData(compressionQuality:0.25)!
-            compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality:0.0))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
-            presentImageViewer(selectedImage: compressedImageView)
-        case .medium:
-            let imageData = originalImageView.image?.jpegData(compressionQuality:0.50)!
-            compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality:0.50))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
-            presentImageViewer(selectedImage: compressedImageView)
-        case .low:
-            let imageData = originalImageView.image?.jpegData(compressionQuality:0.75)!
-            compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality: 0.75))!)
-            compressedImageLabel.text = "Compressed Image Size: \n \(Float(Double(imageData!.count)/1024/1024).rounded()) MB"
-            presentImageViewer(selectedImage: compressedImageView)
-        }
-    }
-    
-    private func resetForNewImage(){
-        compressedImageView.image = nil
-        compressedImageLabel.text = "Compressed Image Size:"
+        
+    private func setCompressedImage(compressionAmount: compressionAmount){
+                
+        compressedImageView.image = UIImage(data: (originalImageView.image?.jpegData(compressionQuality: CGFloat(compressionAmount.rawValue)))!)
+        
+        compressedImageLabel.text = "Compressed Image Size: \n \(compressedImageView.getSize())"
+                
+        compressedImageView.isUserInteractionEnabled = true
+        
+        presentImageViewer()
     }
 
-    private func presentImageViewer(selectedImage: UIImageView){
+    @objc private func presentImageViewer(){
         
         let configuration = ImageViewerConfiguration { config in
-            config.imageView = selectedImage
+            config.imageView = self.compressedImageView
         }        
+        
         let imageViewerController = ImageViewerController(configuration: configuration)
+        
         present(imageViewerController, animated: true)
     }
 }
-
 
 //MARK: UIImagePickerControllerDelegate
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -136,19 +120,19 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, 
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         
-        guard let selectedImage = info[.originalImage] as? UIImage else {fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")}
+        guard let selectedImage = info[.originalImage] as? UIImage 
+            else {fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")}
         
         originalImageView.image = selectedImage
-                
-        originalImageLabel.text = "Actual Image Size: \n \(Float(Double((selectedImage.pngData()?.count)!)/(1024 * 1024)).rounded()) MB"
-        
-        print("selectedImage: \(selectedImage.pngData()?.count)")
-        print("UIImage: \(originalImageView.image?.pngData()?.count)")
+        originalImageLabel.text = "Actual Image Size: \n \(originalImageView.getSize())"
         
         dismiss(animated: true, completion:{
             self.gottaKeepItFun()
             self.customCompresionOutletButton.isEnabled = true
-            self.resetForNewImage()
+            self.compressedImageView.isUserInteractionEnabled = false
+            self.compressedImageView.image = nil
+            self.compressedImageLabel.text = "Compressed Image Size:"
+            self.title = "Compress image"
         })
     }
 }
@@ -158,7 +142,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 extension ViewController{
     
     //TODO(Optional): Add a fun animation to the customCompressOutlet button 
-    fileprivate func gottaKeepItFun(){
+    private func gottaKeepItFun(){
         UIView.animate(withDuration: 0.7) { 
             self.customCompresionOutletButton.alpha = 1.0
         }
