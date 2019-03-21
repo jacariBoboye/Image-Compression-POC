@@ -10,9 +10,9 @@ import UIKit
 import SimpleImageViewer
 
 
-enum compressionType: String{case highest = "highest", medium = "medium", lowest = "lowest"}
+enum compressionType: String{case highest = "Highest", high = "High", medium = "Medium", low = "Low", lowest = "Lowest"}
 
-enum compressionAmount: CGFloat{case highestCompression = 0.0, highCompression = 0.25, mediumCompression = 0.50, mildCompress = 0.75, lowestCompression = 0.9}
+enum compressionAmount: CGFloat{case highestCompression = 0.0, highCompression = 0.2, mediumCompression = 0.4, lowCompression = 0.6, lowestCompression = 0.8}
 
 
 //MARK: Properties
@@ -73,15 +73,23 @@ extension ViewController{
         alert.view.backgroundColor = .black
         alert.view.tintColor = .darkGray
                 
-        alert.addAction(UIAlertAction(title: "High Compression(\(compressionAmount.highestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "\(compressionType.highest.rawValue) Compression(\(compressionAmount.highestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
             self.setCompressedImage(compressionAmount: .highestCompression)
             self.title = "\(compressionType.highest.rawValue.uppercased())"
         }))
-        alert.addAction(UIAlertAction(title: "Medium Compression(\(compressionAmount.mediumCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "\(compressionType.high.rawValue) Compression(\(compressionAmount.highCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+            self.setCompressedImage(compressionAmount: .highCompression)
+            self.title = "\(compressionType.highest.rawValue.uppercased())"
+        }))
+        alert.addAction(UIAlertAction(title: "\(compressionType.medium.rawValue) Compression(\(compressionAmount.mediumCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
             self.setCompressedImage(compressionAmount: .mediumCompression)
             self.title = "\(compressionType.medium.rawValue.uppercased())"
         }))
-        alert.addAction(UIAlertAction(title: "Low Compression(\(compressionAmount.lowestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "\(compressionType.low.rawValue) Compression(\(compressionAmount.lowCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
+            self.setCompressedImage(compressionAmount: .lowCompression)
+            self.title = "\(compressionType.highest.rawValue.uppercased())"
+        }))
+        alert.addAction(UIAlertAction(title: "\(compressionType.lowest.rawValue) Compression(\(compressionAmount.lowestCompression.rawValue))", style: .default , handler:{ (UIAlertAction)in
             self.setCompressedImage(compressionAmount: .lowestCompression)
             self.title = "\(compressionType.lowest.rawValue.uppercased())"
         }))
